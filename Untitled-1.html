@@ -4,43 +4,53 @@
 <meta charset="UTF-8">
 <title>Ваш заголовок</title>
 <style>
-  body { 
-    font-family: Arial, sans-serif; 
-    background-color: #888888; /* Серый фон для всей страницы */
+  body, html { 
+    height: 2500px; /* Фиксированная высота страницы */
     margin: 0;
     padding: 0;
+    background-color: #f2f2f2; /* Серый фон для всей страницы */
   }
   .header {
-    background-color: #ffffff;
+    position: fixed; /* Фиксированное положение заголовка */
+    top: 0; /* Прикрепление к верху страницы */
+    left: 0;
+    right: 0;
+    background-color: #f2f2f2;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень под заголовком */
+    z-index: 1000; /* Убедитесь, что заголовок находится над другими элементами */
   }
   .logo {
     margin-right: 20px;
   }
   .container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px; /* Одинаковые отступы по всем сторонам */
+    max-width: 100%; /* Ширина контейнера подстраивается под ширину экрана */
+    padding: 40px; /* Одинаковые отступы по всем сторонам */
+    margin-top: 80px; /* Отступ сверху, чтобы заголовок не перекрывал контент */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     background-color: white; /* Белый фон для контейнера */
   }
-  .main-image { 
-    display: flex; 
-    justify-content: center; 
-    margin-bottom: 40px; /* Отступ от изображения до описания */
+  .main-image img { 
+    width: calc(100% - 80px); /* Ширина изображения зависит от ширины контейнера */
+    height: auto; 
+    border-radius: 10px;
+    display: block; /* Убедитесь, что изображение не выходит за пределы контейнера */
+    margin: 0 auto; /* Центрирование изображения */
   }
   .description { 
     text-align: left; 
-    margin-bottom: 40px; /* Отступ от описания до счётчика времени */
+    margin-bottom: 40px; 
+    background-color: #f9f9f9; /* Светлый фон для описания */
+    padding: 20px;
+    border-radius: 10px;
   }
   .time-container { 
     text-align: center; 
-    margin-bottom: 40px; /* Отступ от счётчика времени до нижней полосы */
+    margin-bottom: 40px; 
   }
   .footer {
     background-color: #007bff;
@@ -50,19 +60,16 @@
     width: 100%;
   }
   .file-container img, .file-container video {
-    max-width: calc(50% - 20px);
+    max-width: calc(100% - 20px);
     margin: 10px;
     height: auto;
-  }
-  @media (max-width: 768px) {
-    .container { width: 95%; }
   }
 </style>
 <script>
   function updateTime() {
     var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     var openTime = new Date();
-    var futureTime = new Date(openTime.getTime() + 1.5 * 60 * 60 * 1000);
+    var futureTime = new Date(openTime.getTime() + 1.4 * 60 * 60 * 1000);
     document.getElementById('open-time').textContent = 'Вход выполнен с: ' + openTime.toLocaleString('ru-RU', options);
     document.getElementById('future-time').textContent = 'Активен до: ' + futureTime.toLocaleString('ru-RU', options);
   }
@@ -80,11 +87,24 @@
 
 <div class="container">
   <div class="main-image">
-    <img src="img/1233.gif" alt="Описание картинки" style="max-width: 100%; height: auto; border-radius: 10px;">
+    <img src="img/1233.gif" alt="Описание картинки">
   </div>
 
   <div class="description" contenteditable="true">
-    <p>описание.</p>
+    <p>Здесь ваше описание.</p>
+    <h2>Получатель:</h2>
+    <h3> Оплата проезда в автобусе, гар. номер 25630 (в городском транспорте: 0.8 руб)
+      г. Гомель
+      Гомельоблавтотранс ф-л "АП №6"
+      Активен с:
+      06.05.2024 08:20
+      Активен до:
+      06.05.2024 09:00
+      Описание:
+      #0de7a670114155ba#
+      Цена:
+      0.8 BYN</h3>
+     
   </div>
 
   <div class="time-container">
@@ -98,7 +118,7 @@
 </div>
 
 <div class="footer">
-  <p>ТКСТ</p>
+  <p>Ваш текст</p>
 </div>
 
 </body>
