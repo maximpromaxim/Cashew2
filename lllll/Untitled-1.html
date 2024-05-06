@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Ваш заголовок</title>
+<style>
+  body { 
+    font-family: Arial, sans-serif; 
+    background-color: #888888; /* Серый фон для всей страницы */
+    margin: 0;
+    padding: 0;
+  }
+  .header {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+  }
+  .logo {
+    margin-right: 20px;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px; /* Одинаковые отступы по всем сторонам */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    background-color: white; /* Белый фон для контейнера */
+  }
+  .main-image { 
+    display: flex; 
+    justify-content: center; 
+    margin-bottom: 40px; /* Отступ от изображения до описания */
+  }
+  .description { 
+    text-align: left; 
+    margin-bottom: 40px; /* Отступ от описания до счётчика времени */
+  }
+  .time-container { 
+    text-align: center; 
+    margin-bottom: 40px; /* Отступ от счётчика времени до нижней полосы */
+  }
+  .footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+  }
+  .file-container img, .file-container video {
+    max-width: calc(50% - 20px);
+    margin: 10px;
+    height: auto;
+  }
+  @media (max-width: 768px) {
+    .container { width: 95%; }
+  }
+</style>
+<script>
+  function updateTime() {
+    var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    var openTime = new Date();
+    var futureTime = new Date(openTime.getTime() + 1.5 * 60 * 60 * 1000);
+    document.getElementById('open-time').textContent = 'Вход выполнен с: ' + openTime.toLocaleString('ru-RU', options);
+    document.getElementById('future-time').textContent = 'Активен до: ' + futureTime.toLocaleString('ru-RU', options);
+  }
+  window.onload = updateTime;
+</script>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <img src="img/ll.jpg" alt="Логотип" style="height: 50px;">
+  </div>
+  <h1>Заголовок</h1>
+</div>
+
+<div class="container">
+  <div class="main-image">
+    <img src="img/1233.gif" alt="Описание картинки" style="max-width: 100%; height: auto; border-radius: 10px;">
+  </div>
+
+  <div class="description" contenteditable="true">
+    <p>описание.</p>
+  </div>
+
+  <div class="time-container">
+    <p id="open-time"></p>
+    <p id="future-time"></p>
+  </div>
+
+  <div class="file-container">
+    <!-- Контейнер для вставляемых файлов -->
+  </div>
+</div>
+
+<div class="footer">
+  <p>ТКСТ</p>
+</div>
+
+</body>
+</html>
