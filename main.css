@@ -1,0 +1,101 @@
+/* Общий стиль для страницы */
+body {
+  background-color: #919191; /* Светло-серый фон */
+  color: #333; /* Цвет текста */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Стиль для ссылок */
+a {
+  color: #d4af37; /* Тёмно-жёлтый цвет */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffd700; /* Ярко-жёлтый цвет при наведении */
+  text-decoration: none; /* Подчёркивание при наведении (по желанию) */
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 30%;
+}
+
+/* Карусель */
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Выпадающее меню в левом верхнем углу */
+.dropdown-menu-left {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+
+/* Центральный блок с кнопками */
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 50px 0;
+  min-height: calc(100vh - 560px);
+}
+
+.custom-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 150px;
+  height: 200px;
+  padding: 0;
+  margin: 10px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.custom-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.custom-btn .btn-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); /* Градиентный фон */
+  color: white;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* Класс для сглаживания углов */
+.rounded-corners {
+  border-radius: 15px;
+}
+
+/* Нижний блок */
+.footer {
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}

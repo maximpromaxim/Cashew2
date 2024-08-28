@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <title>bentozzzz</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Betos">
+    <link rel="shortcut icon" href="/ico/favicon-16x16.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <!-- Верхний блок с каруселью и выпадающим меню -->
+    <div class="header">
+      <!-- Карусель с изображениями -->
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://via.placeholder.com/1500x400" alt="Первое изображение">
+          </div>
+          <div class="carousel-item">
+            <img src="https://via.placeholder.com/1500x400" alt="Второе изображение">
+          </div>
+          <div class="carousel-item">
+            <img src="https://via.placeholder.com/1500x400" alt="Третье изображение">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Предыдущее</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Следующее</span>
+        </a>
+      </div>
+
+      <!-- Выпадающее меню -->
+      <div class="dropdown dropdown-menu-left">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          =
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Ссылка 1</a>
+          <a class="dropdown-item" href="#">Ссылка 2</a>
+          <a class="dropdown-item" href="#">Ссылка 3</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Центральный блок с кнопками -->
+    <div class="container main-content">
+      <a href="#" class="btn btn-primary custom-btn rounded-corners">
+        <img src="https://via.placeholder.com/100x160" alt="Изображение 1">
+        <span class="btn-text">Кнопка 1</span>
+      </a>
+      <a href="#" class="btn btn-primary custom-btn rounded-corners">
+        <img src="https://via.placeholder.com/100x160" alt="Изображение 2">
+        <span class="btn-text">Кнопка 2</span>
+      </a>
+      <a href="#" class="btn btn-primary custom-btn rounded-corners">
+        <img src="https://via.placeholder.com/100x160" alt="Изображение 3">
+        <span class="btn-text">Кнопка 3</span>
+      </a>
+      <a href="#" class="btn btn-primary custom-btn rounded-corners">
+        <img src="https://via.placeholder.com/100x160" alt="Изображение 4">
+        <span class="btn-text">Кнопка 4</span>
+      </a>
+      <a href="#" class="btn btn-primary custom-btn rounded-corners">
+        <img src="https://via.placeholder.com/100x160" alt="Изображение 5">
+        <span class="btn-text">Кнопка 5</span>
+      </a>
+    </div>
+
+    <!-- Нижний блок -->
+    <div class="footer">
+      Контактная информация: email@example.com | Телефон: +7 123 456 7890
+      <a href="https://www.youtube.com/"> сылллка</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
