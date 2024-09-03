@@ -21,40 +21,122 @@ a:hover {
   text-decoration: none;
 }
 
-.header {
-  position: relative;
-  width: 100%;
-  height: 30%;
+/* Контейнер центрального блока с отступами */
+.container {
+  margin: 15% 10%; /* 15% сверху и снизу, 10% слева и справа */
 }
 
 /* Карусель */
+.carousel-custom {
+  width: 100%;
+  border-radius: 15px; /* Сглаженные углы для карусели */
+  overflow: hidden; /* Обрезаем содержимое карусели по границам */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .carousel-inner {
-  height: 100%;
+  width: 100%;
 }
 
 .carousel-inner img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
+  aspect-ratio: 3/4; /* Соотношение сторон 3:4 */
+  border-radius: 15px; /* Скругляем углы изображений */
 }
 
-/* Выпадающее меню в левом верхнем углу */
-.dropdown-menu-left {
+/* Индикаторы в виде маленьких полупрозрачных точек */
+.carousel-indicators {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 1000;
-}
-
-/* Центральный блок с кнопками */
-.main-content {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%); /* Центрируем индикаторы */
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; /* Равные отступы между кнопками */
-  padding: 50px 100px;
-  flex-grow: 1; /* Занимает оставшееся пространство */
+  justify-content: center;
+  padding-left: 0;
+  margin-right: 15%;
+  margin-left: 15%;
+  list-style: none;
 }
 
+.carousel-indicators li {
+  box-sizing: content-box;
+  flex: 0 1 auto;
+  width: 8px; /* Размер точек */
+  height: 8px;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-indent: -999px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.5); /* Полупрозрачные белые точки */
+  background-clip: padding-box;
+  border: 0;
+  border-radius: 50%; /* Делает индикаторы круглыми */
+  transition: opacity .6s ease;
+}
+
+.carousel-indicators .active {
+  background-color: rgba(212, 175, 55, 0.9); /* Меняем цвет активной точки */
+  opacity: 1;
+}
+
+/* Сглаженные углы */
+.rounded-corners {
+  border-radius: 15px;
+}
+
+/* Блок с характеристиками */
+.characteristics {
+  background-color: #f0f0f0; /* Светло-серый фон */
+  padding: 15px;
+  margin-top: 20px;
+  max-width: 90%; /* Уменьшает ширину блока с характеристиками */
+  margin-left: auto; /* Смещает блок вправо */
+}
+
+.characteristic-name {
+  font-weight: bold;
+}
+
+.characteristic-value {
+  word-wrap: break-word; /* Перенос текста внутри блока */
+}
+
+.characteristics .row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Отступ между характеристиками */
+}
+
+/* Контейнер для карусели и описания */
+.row {
+  display: flex;
+  align-items: stretch; /* Растягивает элементы на всю высоту родителя */
+}
+
+/* Левая часть с каруселью */
+.col-md-7 {
+  display: flex;
+  justify-content: flex-start; /* Придерживается левого края */
+}
+
+.col-md-7 .carousel-custom {
+  flex-grow: 1; /* Растягивается по ширине */
+}
+
+/* Правая часть с описанием */
+.col-md-5 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start; /* Придерживается правого края */
+  flex-grow: 1; /* Растягивается по ширине */
+}
+
+/* Стиль для кнопок */
 .custom-btn {
   position: relative;
   display: flex;
@@ -88,7 +170,7 @@ a:hover {
   font-size: 14px;
 }
 
-/* Специальный стиль для первой кнопки с отметкой "Нове!" */
+/* Специальный стиль для первой кнопки с отметкой "Новинка" */
 .custom-btn.new::before {
   content: "Новинка";
   position: absolute;
@@ -121,6 +203,7 @@ a:hover {
   background-color: rgba(200, 200, 200, 0.4); /* Полупрозрачный светло-серый цвет */
   z-index: 5; /* Находится выше изображения, но ниже текста */
 }
+
 .custom-btn.sold::before {
   content: "sold out!";
   position: absolute;
@@ -140,22 +223,6 @@ a:hover {
   justify-content: flex-start; /* Выравниваем текст вдоль линии */
   padding-left: 108%; /* Регулируем отступ от начала линии */
   transition: none; /* Без плавного перехода */
-}
-
-/* Класс для сглаживания углов */
-.rounded-corners {
-  border-radius: 15px;
-}
-
-/* Нижний блок */
-.footer {
-  background-color: #343a40;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  width: 100%;
-   /* position: fixed; Фиксированное положение */
-  bottom: 0; /* Прикрепляем к нижнему краю страницы */
 }
 
 /* Эффект увеличения при наведении */
@@ -184,4 +251,13 @@ a:hover {
 
 .custom-btn:nth-child(3):hover img {
   content: url('img/6969.jpg'); /* Изображение при наведении */
+}
+
+/* Нижний блок */
+.footer {
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
 }
