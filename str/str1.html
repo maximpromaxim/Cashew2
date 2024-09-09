@@ -9,6 +9,34 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="main.css">
   </head>
+
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const container = document.querySelector('.scrolling-wrapper');
+  const buttons = Array.from(container.querySelectorAll('.custom-btn'));
+
+  // Отдельно собираем кнопки с классами new и sold
+  const newButtons = buttons.filter(button => button.classList.contains('new'));
+  const soldButtons = buttons.filter(button => button.classList.contains('sold'));
+  
+  // Остальные кнопки
+  const otherButtons = buttons.filter(button => !button.classList.contains('new') && !button.classList.contains('sold'));
+
+  // Перемешиваем оставшиеся кнопки
+  for (let i = otherButtons.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [otherButtons[i], otherButtons[j]] = [otherButtons[j], otherButtons[i]];
+  }
+
+  // Собираем кнопки в нужном порядке: new -> остальные -> sold
+  const sortedButtons = [...newButtons, ...otherButtons, ...soldButtons];
+
+  // Очищаем контейнер и добавляем кнопки в новом порядке
+  container.innerHTML = '';
+  sortedButtons.forEach(button => container.appendChild(button));
+});
+  </script>
+
   <body>
     <ul class="nav nav-tabs">
       <li class="nav-item">
@@ -36,8 +64,8 @@
     <div class="container mt-4">
       <div class="row">
         <!-- Левая часть: Карусель -->
-        <div class="col-md-7 d-flex justify-content-center align-items-center rounded-corners">
-          <div id="carouselExampleIndicators" class="carousel slide carousel-custom rounded-corners" data-ride="carousel">
+        <div class="col-md-7 d-flex justify-content-center align-items-center carousel-custom">
+          <div id="carouselExampleIndicators" class="carousel slide carousel-custom" data-ride="carousel">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -71,7 +99,7 @@
           <p>Короткое описание фотографии, рассказывающее о её содержании и ключевых особенностях.</p>
 
           <!-- Блок с характеристиками -->
-          <div class="characteristics rounded-corners">
+          <div class="characteristics">
             <div class="row">
               <div class="col-6 characteristic-name">Характеристика 1:</div>
               <div class="col-6 characteristic-value">Значение характеристики 1</div>
@@ -88,41 +116,43 @@
         </div>
       </div>
 
-      <!-- Нижний блок с кнопками -->
-    <div class="container text-center my-4">
-      <h2 class="mb-4">Вам также может понравиться</h2>
-      <div class="row justify-content-center">
-        <div class="col-6 col-md-3 mb-4">
-          <a href="#" class="btn btn-primary custom-btn rounded-corners new">
-            <img src="https://via.placeholder.com/150x200" alt="Изображение 1">
-            <span class="btn-text">Кнопка 1</span>
-          </a>
-        </div>
-        <div class="col-6 col-md-3 mb-4">
-          <a href="#" class="btn btn-primary custom-btn rounded-corners sold">
-            <img src="img/6969.jpg" alt="Изображение 2">
-            <span class="btn-text">Кнопка 2</span>
-          </a>
-        </div>
-        <div class="col-6 col-md-3 mb-4">
-          <a href="#" class="btn btn-primary custom-btn rounded-corners">
-            <img src="img/6070.jpg" alt="Изображение 3">
-            <span class="btn-text">Кнопка 3</span>
-          </a>
-        </div>
-        <div class="col-6 col-md-3 mb-4">
-          <a href="#" class="btn btn-primary custom-btn rounded-corners">
-            <img src="https://via.placeholder.com/150x200" alt="Изображение 4">
-            <span class="btn-text">Кнопка 4</span>
-          </a>
-        </div>
-      </div>
-    </div>
+<!-- Новый контейнер для секции "Вам также может понравиться" -->
+<div class="container text-center my-4">
+  <h2 class="mb-4">Вам также может понравиться</h2>
+  <div class="scrolling-wrapper">
+    <a href="#" class="custom-btn" id="btn-1">
+      <span class="btn-text">Кнопка 1</span>
+    </a>
+    <a href="#" class="custom-btn sold" id="btn-2">
+      <span class="btn-text">Кнопка 2</span>
+    </a>
+    <a href="#" class="custom-btn new" id="btn-3">
+      <span class="btn-text">Кнопка 3</span>
+    </a>
+    <a href="#" class="custom-btn" id="btn-4">
+      <span class="btn-text">Кнопка 4</span>
+    </a>
+    <a href="#" class="custom-btn" id="btn-4">
+      <span class="btn-text">Кнопка 5</span>
+    </a>
+    <a href="#" class="custom-btn" id="btn-4">
+      <span class="btn-text">Кнопка 6</span>
+    </a>
+    <a href="#" class="custom-btn" id="btn-4">
+      <span class="btn-text">Кнопка 7</span>
+    </a>
+    <a href="#" class="custom-btn" id="btn-4">
+      <span class="btn-text">Кнопка 8</span>
+    </a>
+    <!-- Добавьте больше кнопок с нужными id -->
+  </div>
+</div>
+
     <!-- Нижний блок -->
-    <div class="footer">
-      Контактная информация: email@example.com | Телефон: +8 800 535 353 5
-      <a href="https://www.youtube.com/"> сылллка</a>
-    </div>
+<div class="footer">
+  Контактная информация: email@example.com | Телефон: +8 800 535 353 5
+  <a href="https://www.youtube.com/"> сылллка</a>
+</div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
