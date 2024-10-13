@@ -10,6 +10,46 @@ body {
   min-height: 100vh; /* Минимальная высота на весь экран */
 }
 
+@media (max-width: 800px) {
+  .central-block {
+    flex-direction: column; /* Перемещаем блоки один под другим */
+    align-items: center; /* Центрируем блоки по горизонтали */
+  }
+
+  .left-section {
+    width: 100%; /* Левая секция занимает 100% ширины */
+    margin-bottom: 20px; /* Отступ между каруселью и правым блоком */
+    display: flex;
+    flex-direction: column; /* Галерея перемещается под карусель */
+    align-items: center; /* Центрируем содержимое по горизонтали */
+  }
+
+  .carousel-container {
+    width: 100%; /* Карусель растягивается на всю ширину */
+  }
+
+  .vertical-gallery {
+    width: 100%; /* Галерея растягивается на всю ширину */
+    display: flex;
+    flex-direction: row; /* Изображения в один ряд */
+    justify-content: center; /* Центрируем изображения внутри галереи */
+    margin-top: 10px; /* Отступ сверху */
+  }
+
+  .vertical-gallery img {
+    width: 80px; /* Ширина каждого изображения */
+    height: 80px; /* Высота каждого изображения */
+    margin-right: 10px; /* Отступ между изображениями */
+  }
+
+  .right-section {
+    width: 100%; /* Правый блок занимает всю ширину */
+    padding-left: 0; /* Убираем отступы слева */
+    text-align: center; /* Центрируем текст внутри */
+  }
+}
+
+
 /* Стиль для ссылок */
 a {
   color: #d4af37; /* Тёмно-жёлтый цвет */
@@ -21,34 +61,265 @@ a:hover {
   text-decoration: none;
 }
 
-/* Контейнер центрального блока с отступами */
+/* Центральный блок: разделение на две части */
+.central-block {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  padding: 3%;
+  box-sizing: border-box;
+}
+
+
 .container {
-  padding: 5% 0;
+  padding: 0% 0;
   margin: 0 auto; /* Центрирование контейнера с равными отступами слева и справа */
   max-width: 90%; /* Ограничение максимальной ширины контейнера */
   flex: 1; /* Заставляем контейнер растягиваться */
 }
 
-/* Карусель */
-.carousel-custom {
-  width: 100%;
-  border-radius: 15px; /* Сглаженные углы для карусели */
-  overflow: hidden; /* Обрезаем содержимое карусели по границам */
+.custom-btn-link {
   display: flex;
+  justify-content: center;
+  width: 100%; /* Кнопка будет занимать всю ширину контейнера */
+  margin-top: 20px; /* Отступ сверху */
+}
+
+.right {
+ width: 50%;
+}
+
+/* Левая часть: карусель и галерея (60%) */
+.left-section {
+  display: flex;
+  width: 60%; /* 60% ширины */
+  position: relative;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+/* Контейнер для описания и характеристик (50% ширины) */
+.right-section {
+  width: 70%;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+/* Объединённый контейнер для галереи и карусели */
+.carousel-gallery-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-height: 100vh; /* Ограничиваем по высоте экрана */
+  align-items: center;
+  gap: 10px; /* Отступ между галереей и каруселью */
+}
+
+/* Контейнер для галереи и карусели (квадрат) */
+.carousel-gallery-wrapper {
+  display: flex;
+  width: 100%;
+  height: auto; /* Изменено на auto, чтобы карусель корректно растягивалась */
+  max-height: 100vh; /* Ограничение по высоте */
+  align-items: center;
+  gap: 10px; /* Отступ между галереей и каруселью */
+}
+
+
+/* Галерея (3:4 пропорции) */
+.vertical-gallery {
+  width: 100px; /* Ширина галереи */
+  height: auto;
+  overflow-y: auto;
+  align-self: flex-start; /* Галерея прижимается к верху контейнера */
+}
+
+.vertical-gallery img {
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* Масштабируем изображение, сохраняя пропорции */
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.image-scrollbar {
+  width: 100px;
+  overflow-y: auto;
+  margin-right: 10px;
+}
+
+.image-gallery-scroll {
+  overflow-y: auto;
+  max-height: 50%;
+  scrollbar-width: thin;
+  scrollbar-color: #888 none;
+}
+
+/* Стилизация полосы прокрутки как в нижнем блоке */
+.image-gallery-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.image-gallery-scroll::-webkit-scrollbar-track {
+  background: #ccc;
+}
+
+.image-gallery-scroll::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 3px solid #ccc;
+}
+
+/* Левая часть: узкая галерея фиксируется и не прокручивается */
+.left-gallery {
+  top: 20px; /* Отступ сверху */
+  left: 20px; /* Отступ от левого края */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Отступы между изображениями */
+}
+
+.left-gallery img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; /* Сохраняем пропорции */
+  cursor: pointer;
+}
+
+
+.image-gallery {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  width: 100px; /* Ширина галереи */
+  margin-right: 20px;
+}
+
+.image-gallery img {
+  width: 100%;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.gallery-scroll {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.gallery-scroll img {
+  width: 60px;
+  height: auto;
+  cursor: pointer;
+}
+
+.image-gallery.hidden {
+  display: none; /* Скрытие галереи, если изображений меньше трёх */
+}
+
+
+.info-container {
+  width: 35%; /* Блок с описанием остается фиксированной ширины */
+  margin-left: auto; /* Сдвигаем блок с описанием вправо, если нужно */
+}
+
+.product-specs {
+  list-style: none;
+  padding: 0;
+}
+
+/* Контейнер для галереи и карусели */
+.row {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start; /* Выровнять всё по левому краю */
+}
+
+#vertical-gallery {
+  flex: 0 0 auto; /* Галерея занимает только необходимое пространство */
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-right: 8px; /* Минимальный отступ между галереей и каруселью */
+}
+
+#vertical-gallery img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 8px; /* Отступы между изображениями */
+  margin-right: 0;
+  cursor: pointer;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.gallery img {
+  width: 100px;
+  cursor: pointer;
+}
+
+/* Карусель (80% ширины контейнера) */
+.carousel-container {
+  width: 80%;
+  display: flex;
+  align-items: flex-start; /* Карусель прижимается к верху */
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  height: auto;
+}
+
+
+/* Ограничение высоты карусели до высоты галереи */
+.carousel {
+  width: 100%; /* Карусель занимает всю ширину контейнера */
+  height: auto;
+  aspect-ratio: 3 / 4; /* Соотношение сторон 3:4 */
+  max-height: 100%; /* Ограничение высоты контейнера */
+}
+
+
+/* Карусель растягивается на оставшуюся ширину */
+.carousel.slide {
+  width: 60%; /* Карусель занимает 90% от ширины контейнера */
+  max-height: 100%; /* Максимальная высота равна высоте контейнера */
 }
 
 .carousel-inner {
+  display: flex; /* Включаем горизонтальное расположение */
+  transition: transform 0.5s ease;
+}
+.carousel-inner img {
+  object-fit: cover;
   width: 100%;
+  height: 100%;
 }
 
-.carousel-inner img {
+.carousel-item {
+  min-width: 100%; /* Каждая картинка занимает 100% контейнера */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item img {
   width: 100%;
   height: auto;
-  object-fit: cover;
-  aspect-ratio: 3/4; /* Соотношение сторон 3:4 */
-  /* border-radius: 15px;  Скругляем углы изображений */
+  object-fit: contain; /* Масштабируем изображение, сохраняя пропорции */
 }
 
 /* Индикаторы в виде маленьких полупрозрачных точек */
@@ -86,6 +357,24 @@ a:hover {
   opacity: 1;
 }
 
+/* Убираем кнопки прокрутки */
+.carousel-control-prev, .carousel-control-next {
+  display: none;
+}
+
+/* Убираем индикаторы порядка изображений */
+.carousel-indicators {
+  display: none;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 30px;
+  height: 30px;
+  background-size: 100%;
+}
+
+
 /* Сглаженные углы */
 .rounded-corners {
   border-radius: 0px;
@@ -93,13 +382,10 @@ a:hover {
 
 /* Блок с характеристиками */
 .characteristics {
-  background-color: #f0f0f0; /* Светло-серый фон */
-  padding: 15px;
+  background-color: #f0f0f0;
+  padding: 10px;
   margin-top: 20px;
-  max-width: 90%; /* Уменьшает ширину блока с характеристиками */
-  margin-left: auto; /* Смещает блок вправо */
 }
-
 .characteristic-name {
   font-weight: bold;
 }
@@ -137,28 +423,42 @@ a:hover {
   }
 }
 
-.carousel-custom {
-  width: 100%;
-  min-width: 300px; /* Минимальная ширина карусели */
-  border-radius: 15px; /* Сглаженные углы для карусели */
-  overflow: hidden; /* Обрезаем содержимое карусели по границам */
+.description-btn-container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  height: calc(100% - 200px); /* Расположим кнопку по центру между описанием и нижней частью контейнера */
+  margin-top: 20px; /* Отступ сверху */
 }
 
-/* Остальные стили */
-
-.col-md-7 .carousel-custom {
-  flex-grow: 1; /* Растягивается по ширине */
+.description-btn {
+  padding: 10px 20px;
+  background-color: #ff0000; /* Красный фон кнопки (как у YouTube) */
+  color: white;
+  border-radius: 2px; /* Скругление углов на 1% */
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
+
+.description-btn:hover {
+  background-color: #cc0000; /* Более тёмный оттенок при наведении */
+}
+
+.description-btn:active {
+  background-color: #990000; /* Цвет кнопки при нажатии */
+}
+
 
 /* Стиль для кнопок */
 .custom-btn {
   flex: 0 0 auto;
   margin: 0 5px; /* Минимальные отступы между кнопками */
-  width: 150px;
-  height: 200px;
+  width: 590px;
+  height: 300px;
   display: inline-block;
   flex-direction: column;
   justify-content: flex-end;
@@ -327,7 +627,7 @@ a:hover {
 
 /* Стилизация полосы прокрутки */
 .scrolling-wrapper::-webkit-scrollbar {
-  height: 8px;
+  height: 0px;
 }
 
 .scrolling-wrapper::-webkit-scrollbar-thumb {
@@ -351,6 +651,7 @@ a:hover {
   margin-top: auto; /* Отодвигаем блок вниз страницы */
   box-sizing: border-box; /* Учитываем padding при вычислении ширины */
   position: relative; /* Позиционирование для контроля отступов */
-  left: 0;
-  bottom: 0;
+  left: 0px;
+  bottom: 0px;
+  display: block;
 }

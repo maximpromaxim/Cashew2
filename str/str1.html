@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // Отдельно собираем кнопки с классами new и sold
   const newButtons = buttons.filter(button => button.classList.contains('new'));
   const soldButtons = buttons.filter(button => button.classList.contains('sold'));
-  
+
   // Остальные кнопки
   const otherButtons = buttons.filter(button => !button.classList.contains('new') && !button.classList.contains('sold'));
 
@@ -34,128 +34,248 @@ document.addEventListener("DOMContentLoaded", function() {
   // Очищаем контейнер и добавляем кнопки в новом порядке
   container.innerHTML = '';
   sortedButtons.forEach(button => container.appendChild(button));
+
+  document.addEventListener("DOMContentLoaded", function() {
+  const galleryImages = document.querySelectorAll('.vertical-gallery img');
+  const carouselInner = document.querySelector('.carousel-inner');
+  let currentIndex = 0;
+
+  function scrollToImage(index) {
+    carouselInner.style.transform = `translateX(-${index * 100}%)`;
+    currentIndex = index;
+  }
+
+  // Обработчики кликов по изображениям в галерее
+  galleryImages.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      scrollToImage(index);
+    });
+  });
+
+  // Обработчики для кнопок навигации карусели
+  document.querySelector('.carousel-control-prev').addEventListener('click', () => {
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : galleryImages.length - 1;
+    scrollToImage(currentIndex);
+  });
+
+  document.querySelector('.carousel-control-next').addEventListener('click', () => {
+    currentIndex = (currentIndex < galleryImages.length - 1) ? currentIndex + 1 : 0;
+    scrollToImage(currentIndex);
+  });
 });
+
+
+  // Обработчики для кнопок навигации карусели
+  document.querySelector('.carousel-control-prev').addEventListener('click', () => {
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : galleryImages.length - 1;
+    scrollToImage(currentIndex);
+  });
+
+  document.querySelector('.carousel-control-next').addEventListener('click', () => {
+    currentIndex = (currentIndex < galleryImages.length - 1) ? currentIndex + 1 : 0;
+    scrollToImage(currentIndex);
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  const galleryImages = document.querySelectorAll('.left-gallery img');
+  const carouselInner = document.querySelector('.carousel-inner');
+  let currentIndex = 0;
+
+  function scrollToImage(index) {
+    carouselInner.style.transform = `translateX(-${index * 100}%)`;
+    currentIndex = index;
+  }
+
+  // Обработчики кликов по изображениям галереи
+  galleryImages.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      scrollToImage(index);
+    });
+  });
+
+  // Обработчики для кнопок навигации карусели
+  document.querySelector('.carousel-control-prev').addEventListener('click', () => {
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : galleryImages.length - 1;
+    scrollToImage(currentIndex);
+  });
+
+  document.querySelector('.carousel-control-next').addEventListener('click', () => {
+    currentIndex = (currentIndex < galleryImages.length - 1) ? currentIndex + 1 : 0;
+    scrollToImage(currentIndex);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const galleryImages = document.querySelectorAll('.vertical-gallery img');
+  const carouselInner = document.querySelector('.carousel-inner');
+  let currentIndex = 0;
+  let isDragging = false;
+  let startPos = 0;
+
+  // Функция для прокрутки к изображению
+  function scrollToImage(index) {
+    const carouselWidth = carouselInner.clientWidth;
+    carouselInner.style.transform = `translateX(-${index * carouselWidth}px)`;
+    currentIndex = index;
+  }
+
+  // Обработчики кликов по изображениям галереи
+  galleryImages.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      scrollToImage(index);
+    });
+  });
+
+  // Перетаскивание мышью
+  carouselInner.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startPos = e.pageX;
+  });
+
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+
+  carouselInner.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      const diff = e.pageX - startPos;
+      const carouselWidth = carouselInner.clientWidth;
+      
+      if (diff > carouselWidth / 4) {
+        scrollToImage((currentIndex > 0) ? currentIndex - 1 : galleryImages.length - 1);
+        isDragging = false;
+      } else if (diff < -carouselWidth / 4) {
+        scrollToImage((currentIndex < galleryImages.length - 1) ? currentIndex + 1 : 0);
+        isDragging = false;
+      }
+    }
+  });
+});
+
   </script>
 
-  <body>
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Active</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Separated link</a>
+<body>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Active</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Separated link</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Disabled</a>
+    </li>
+  </ul>
+
+<!-- Центральный блок страницы -->
+<div class="central-block">
+  <!-- Контейнер для галереи и карусели -->
+  <div class="carousel-gallery-wrapper">
+    <div class="vertical-gallery">
+      <img src="https://via.placeholder.com/100x100" alt="Image 1" data-index="0">
+      <img src="https://via.placeholder.com/100x100" alt="Image 2" data-index="1">
+      <img src="https://via.placeholder.com/100x100" alt="Image 3" data-index="2">
+      <img src="https://via.placeholder.com/100x100" alt="Image 4" data-index="3">
+      <img src="https://via.placeholder.com/100x100" alt="Image 5" data-index="4">
+    </div>
+    <div class="carousel-container">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-index="0">
+          <img src="https://via.placeholder.com/500x500" alt="Image 1">
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-
-    <!-- Центральный блок страницы -->
-    <div class="container mt-4">
-      <div class="row">
-        <!-- Левая часть: Карусель -->
-        <div class="col-md-7 d-flex justify-content-center align-items-center carousel-custom">
-          <div id="carouselExampleIndicators" class="carousel slide carousel-custom" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="https://via.placeholder.com/300x400" alt="Первое изображение">
-              </div>
-              <div class="carousel-item">
-                <img src="https://via.placeholder.com/300x400" alt="Второе изображение">
-              </div>
-              <div class="carousel-item">
-                <img src="https://via.placeholder.com/300x400" alt="Третье изображение">
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Предыдущее</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Следующее</span>
-            </a>
-          </div>
+        <div class="carousel-item" data-index="1">
+          <img src="https://via.placeholder.com/500x500" alt="Image 2">
         </div>
-
-        <!-- Правая часть: Описание и характеристики -->
-        <div class="col-md-5">
-          <h1>Заголовок фотографии</h1>
-          <p>Короткое описание фотографии, рассказывающее о её содержании и ключевых особенностях.</p>
-
-          <!-- Блок с характеристиками -->
-          <div class="characteristics">
-            <div class="row">
-              <div class="col-6 characteristic-name">Характеристика 1:</div>
-              <div class="col-6 characteristic-value">Значение характеристики 1</div>
-            </div>
-            <div class="row">
-              <div class="col-6 characteristic-name">Характеристика 2:</div>
-              <div class="col-6 characteristic-value">Значение характеристики 2, которое может быть достаточно длинным и перенестись на новую строчку.</div>
-            </div>
-            <div class="row">
-              <div class="col-6 characteristic-name">Характеристика 3:</div>
-              <div class="col-6 characteristic-value">Значение характеристики 3</div>
-            </div>
-          </div>
+        <div class="carousel-item" data-index="2">
+          <img src="https://via.placeholder.com/500x500" alt="Image 3">
+        </div>
+        <div class="carousel-item" data-index="3">
+          <img src="https://via.placeholder.com/500x500" alt="Image 4">
+        </div>
+        <div class="carousel-item" data-index="4">
+          <img src="https://via.placeholder.com/500x500" alt="Image 5">
         </div>
       </div>
-
-<!-- Новый контейнер для секции "Вам также может понравиться" -->
-<div class="container text-center my-4">
-  <h2 class="mb-4">Вам также может понравиться</h2>
-  <div class="scrolling-wrapper">
-    <a href="#" class="custom-btn" id="btn-1">
-      <span class="btn-text">Кнопка 1</span>
-    </a>
-    <a href="#" class="custom-btn sold" id="btn-2">
-      <span class="btn-text">Кнопка 2</span>
-    </a>
-    <a href="#" class="custom-btn new" id="btn-3">
-      <span class="btn-text">Кнопка 3</span>
-    </a>
-    <a href="#" class="custom-btn" id="btn-4">
-      <span class="btn-text">Кнопка 4</span>
-    </a>
-    <a href="#" class="custom-btn" id="btn-4">
-      <span class="btn-text">Кнопка 5</span>
-    </a>
-    <a href="#" class="custom-btn" id="btn-4">
-      <span class="btn-text">Кнопка 6</span>
-    </a>
-    <a href="#" class="custom-btn" id="btn-4">
-      <span class="btn-text">Кнопка 7</span>
-    </a>
-    <a href="#" class="custom-btn" id="btn-4">
-      <span class="btn-text">Кнопка 8</span>
-    </a>
-    <!-- Добавьте больше кнопок с нужными id -->
+    </div>
   </div>
-</div>
 
-    <!-- Нижний блок -->
-<div class="footer">
-  Контактная информация: email@example.com | Телефон: +8 800 535 353 5
-  <a href="https://www.youtube.com/"> сылллка</a>
-</div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  </body>
+  <!-- Контейнер для описания и характеристик -->
+  <div class="right-section">
+    <h1>Заголовок фотографии</h1>
+    <p>Описание фотографии и её характеристики.</p>
+  
+    <div class="characteristics">
+      <div class="row">
+        <div class="col-6 characteristic-name">Характеристика 1:</div>
+        <div class="col-6 characteristic-value">Значение 1</div>
+      </div>
+      <!-- Другие характеристики -->
+    </div>
+  
+    <!-- Добавляем новую кнопку под описанием и характеристиками -->
+    <div class="description-btn-container">
+      <a href="https://www.youtube.com/@kirlyusha2006" target="_blank" class="description-btn">Оформить заказ</a>
+    </div>
+  </div>  
+</div>
+  <!-- Новый контейнер для секции "Вам также может понравиться" -->
+  <div class="container text-center my-4">
+    <h2 class="mb-4">Вам также может понравиться</h2>
+    <div class="scrolling-wrapper">
+      <a href="#" class="custom-btn" id="btn-1">
+        <span class="btn-text">Кнопка 1</span>
+      </a>
+      <a href="#" class="custom-btn sold" id="btn-2">
+        <span class="btn-text">Кнопка 2</span>
+      </a>
+      <a href="#" class="custom-btn new" id="btn-3">
+        <span class="btn-text">Кнопка 3</span>
+      </a>
+      <a href="#" class="custom-btn" id="btn-1">
+        <span class="btn-text">Кнопка 4</span>
+      </a>
+      <a href="#" class="custom-btn" id="btn-1">
+        <span class="btn-text">Кнопка 5</span>
+      </a>
+      <a href="#" class="custom-btn" id="btn-1">
+        <span class="btn-text">Кнопка 6</span>
+      </a>
+      <a href="#" class="custom-btn" id="btn-1">
+        <span class="btn-text">Кнопка 7</span>
+      </a>
+      <a href="#" class="custom-btn" id="btn-1">
+        <span class="btn-text">Кнопка 5</span>
+      </a>
+      <a href="#" class="custom-btn" id="btn-1">
+        <span class="btn-text">Кнопка 6</span>
+      </a>
+      <a href="#" class="custom-btn" id="btn-1">
+        <span class="btn-text">Кнопка 7</span>
+      </a>
+      <!-- Add more buttons as needed -->
+    </div>
+  </div>
+
+  <!-- Нижний блок -->
+  <div class="footer">
+    Контактная информация: email@example.com | Телефон: +8 800 535 353 5
+    <a href="https://www.youtube.com/"> ссылка</a>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
 </html>
